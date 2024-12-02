@@ -34,14 +34,12 @@ const Label = styled.label`
   font-weight: 500;
 `;
 
-const Error = styled.span`
+const Error = styled.div`
   font-size: 1.4rem;
   color: var(--color-red-700);
 `;
 
 export default function FormRow({label, error, children}) {
-  const { register, formState } = useForm();
-  const {errors} = formState
 
   return (
     <StyledFormRow>
@@ -52,7 +50,7 @@ export default function FormRow({label, error, children}) {
         {...register("name", { required: "This field is required" })}
       /> */}
       {children}
-      {error || <Error>{error}</Error>}
+      {error && <Error>{error}</Error>}
     </StyledFormRow>
   );
 }
